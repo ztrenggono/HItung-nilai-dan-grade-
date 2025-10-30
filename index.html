@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penentuan Grade Rata-Rata Nilai by zaldi jelek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #1a73e8;
+        }
+
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0f5fc4;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f1f8ff;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Hitung Nilai Dan Grade</h2>
+        <label>Nilai PABP:</label>
+        <input type="number" id="pabp" placeholder="Masukkan nilai PABP">
+
+        <label>Nilai Matematika:</label>
+        <input type="number" id="matematika" placeholder="Masukkan nilai Matematika">
+
+        <label>Nilai DPK:</label>
+        <input type="number" id="dpk" placeholder="Masukkan nilai DPK">
+
+        <button onclick="hitungGrade()">Hitung Grade</button>
+
+        <div id="hasil" class="output"></div>
+    </div>
+
+    <script>
+        function hitungGrade() {
+            const pabp = parseFloat(document.getElementById('pabp').value);
+            const matematika = parseFloat(document.getElementById('matematika').value);
+            const dpk = parseFloat(document.getElementById('dpk').value);
+
+            // Validasi input
+            if (isNaN(pabp) || isNaN(matematika) || isNaN(dpk)) {
+                document.getElementById('hasil').innerHTML = " Semua nilai harus diisi dengan angka!";
+                return;
+            }
+
+            const rata = (pabp + matematika + dpk) / 3;
+            let grade = "";
+
+            if (rata >= 80 && rata <= 100) grade = "A";
+            else if (rata >= 75 && rata < 80) grade = "B";
+            else if (rata >= 65 && rata < 75) grade = "C";
+            else if (rata >= 45 && rata < 65) grade = "D";
+            else if (rata >= 0 && rata < 45) grade = "E";
+            else grade = "K";
+
+            document.getElementById('hasil').innerHTML = `
+            Nilai Rata-rata anda adalah : ${rata.toFixed(2)} <br>
+            Grade anda adalah: <strong>${grade}</strong>
+      `;
+        }
+    </script>
+</body>
+
+</html>
